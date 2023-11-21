@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Weather App</title>
+
+    <style>
+        body {
+            font-family: 'Fira Code';
+            background: url('img/100173.jpg') center/cover no-repeat;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: background-image 0.8s ease;
+        }
+
+        #app .box {
+            box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2), -10px -10px 30px rgba(0, 0, 0, 0.2);
+            border-radius: 7px;
+            padding: 30px;
+            display: inline-block;
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 200px; /* Sesuaikan dengan lebar yang diinginkan */
+            height: 100px; /* Sesuaikan dengan tinggi yang diinginkan */
+        }
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        #app {
+            text-align: center;
+        }
+
+        #app .form .keyword {
+            padding: 10px 50px;
+            border-top-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            border: none;
+            width: 300px;
+            margin-top: 30px;
+        }
+
+        #app .form .btn-search {
+            padding: 10px 30px;
+            border: none;
+            cursor: pointer;
+            background-color: rgb(116, 116, 116);
+            color: #eee;
+            border-radius: 7px;
+            margin-left: 10px;
+            transition: .2s;
+        }
+
+        #app .form .btn-search:hover {
+            opacity: 0.8;
+        }
+
+        #app .form .btn-search:focus {
+            outline: rgb(77, 77, 77) solid 2px;
+            outline-offset: 2px;
+        }
+
+        #container {
+            margin-top: 20px;
+        }
+
+        .asepSukaSamaUdin {
+            color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .larger-text {
+            font-size: 27px;
+            color: white;
+        }
+
+        #real-time {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: white;
+            font-size: 18px;
+        }
+
+        #muteButton {
+            position: fixed;
+            bottom: 50px;
+            left: 20px;
+            cursor: pointer;
+            z-index: 1; /* Menempatkan tombol di atas elemen lain */
+        }
+
+        #speakerIcon {
+            width: 30px; /* Sesuaikan ukuran dengan gambar Anda */
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="asepSukaSamaUdin">=Real-time weather=</h1>
+    <div id="app">
+        <div class="form">
+            <input type="text" class="keyword" id="searchInput">
+            <button class="btn-search" onclick="searchWeather()">Search</button>
+        </div>
+
+        <div id="container"></div>
+    </div>
+
+    <div id="real-time"></div>
+
+    <div id="muteButton" onclick="toggleMute()">
+        <img id="speakerIcon" src="img/speaker.png" alt="Speaker Icon" width="30" height="30">
+    </div>
+
+    <footer>
+        &copy; 2023 Izzat Mumtaz M / 16 / XI PPLG 3
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script src="js/weather.js"></script>
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const options = {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+                timeZoneName: 'short',
+            };
+            const formattedDate = now.toLocaleDateString('en-US', options);
+            document.getElementById('real-time').textContent = formattedDate;
+        }
+
+        updateTime();
+        setInterval(updateTime, 1000);
+
+        document.getElementById('searchInput').addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                searchWeather();
+            }
+        });
+    </script>
+</body>
+
+</html>
