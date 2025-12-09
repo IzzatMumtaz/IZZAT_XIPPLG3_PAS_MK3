@@ -10,11 +10,7 @@ real-time berdasarkan nama kota yang dimasukkan pengguna.
 -   Menampilkan:
     -   Suhu (°C)
     -   Kondisi cuaca
-    -   Kecepatan angin
-    -   Kelembapan
     -   Waktu lokal lokasi tersebut
--   Validasi input kota
--   Penanganan error jika kota tidak ditemukan
 -   Desain kode sederhana dan mudah dipahami
 
 ## 🧰 Teknologi yang Digunakan
