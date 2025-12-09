@@ -1,4 +1,3 @@
-// app.js
 const keyword = document.querySelector(".keyword");
 const btnSearch = document.querySelector(".btn-search");
 const container = document.getElementById("container");
