@@ -1,6 +1,6 @@
 // weather.js
 const weatherAPI =
-  "http://api.weatherapi.com/v1/current.json?key=7e71b6f8993649078d1145132220906&aqi=no";
+  "http://api.weatherapi.com/v1/current.json?key=a963ca9ef2c7464db0c112223250912&aqi=no";
 let currentAudio; // Menyimpan referensi ke elemen audio saat ini
 
 function showElement(data) {

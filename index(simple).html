@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Simple Weather</title>
+</head>
+<body>
+
+  <h2>Cek Cuaca</h2>
+  <input id="city" placeholder="Masukkan kota..." />
+  <button onclick="getWeather()">Cek</button>
+
+  <div id="result"></div>
+
+<script>
+const apiKey = "a963ca9ef2c7464db0c112223250912";
+
+function getWeather() {
+  const city = document.getElementById("city").value;
+  if (!city) return alert("Masukkan kota dulu!");
+
+  fetch(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&aqi=no`)
+    .then(res => res.json())
+    .then(data => {
+      if (data.error) {
+        document.getElementById("result").innerHTML = "Kota tidak ditemukan.";
+        return;
+      }
+
+      document.getElementById("result").innerHTML = `
+        <h3>${data.location.name}, ${data.location.country}</h3>
+        Suhu: ${data.current.temp_c}°C<br>
+        Kondisi: ${data.current.condition.text}<br>
+        <img src="${data.current.condition.icon}" />
+      `;
+    })
+    .catch(() => {
+      document.getElementById("result").innerHTML = "Gagal mengambil data cuaca.";
+    });
+}
+</script>
+
+</body>
+</html>
